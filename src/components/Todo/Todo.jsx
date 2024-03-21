@@ -4,41 +4,37 @@ import TodoList from '../TodoList/TodoList';
 
 class Todo extends Component {
     constructor(props) {
-        super(props);
-
-        this.state = {
-            todos: [],
-            currentId: 0
-        }
-
-        this.setNewTodo = this.setNewTodo.bind(this);
-        this.increaseId = this.increaseId.bind(this);
+      super(props);
+      this.state = {
+        todos: []
+      };
+      this.idCounter = 1;
     }
-
-    setNewTodo(text) {
-        this.setState(prevState => ({
-            todos: [...prevState.todos, text]
-        }), () => {
-            this.increaseId();
-        });
+  
+    addTodo = (todo) => {
+      const newTodo = { ...todo, id: this.idCounter++ };
+      this.setState(prevState => ({
+        todos: [...prevState.todos, newTodo]
+      }));
     }
-
-    increaseId() {
-        this.setState(prevState => ({
-            currentId: prevState.currentId + 1
-        }), () => {
-            // console.log('currentId: ', this.state.currentId);
-            // console.log('todos: ', this.state.todos);
-        });
+  
+    toggleTodo = (id) => {
+      this.setState(prevState => ({
+        todos: prevState.todos.map(todo =>
+          todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+        )
+      }));
     }
+  
     render() {
-        return(
-            <>
-                <TodoForm createTodo={this.setNewTodo} currentId={this.state.currentId}/>
-                <TodoList list={this.state.todos}/>
-            </>
-        );
+      return (
+        <div>
+          <h1>Todo List</h1>
+          <TodoForm addTodo={this.addTodo} />
+          <TodoList todos={this.state.todos} toggleTodo={this.toggleTodo} />
+        </div>
+      );
     }
-}
+  }
 
 export default Todo;
