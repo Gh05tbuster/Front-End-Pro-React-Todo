@@ -24,7 +24,11 @@ class TodoForm extends Component {
     render() {
       return (
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.text} onChange={this.handleChange} />
+          <input 
+          type="text" 
+          value={this.state.text} 
+          placeholder='New task'
+          onChange={this.handleChange} />
           <button type="submit">Save</button>
         </form>
       );

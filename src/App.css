@@ -38,3 +38,25 @@
 }
 
 /* ----------------------------------- */
+.todoList {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .todoList ul {
+  list-style-type: none;
+} */
+
+.todoList li {
+  cursor: pointer;
+  justify-self: start;
+}
+
+.todoList .undoneTodos {
+  color: #900;
+}
+
+.todoList .doneTodos {
+  text-decoration: line-through;
+  color: #090;
+}
