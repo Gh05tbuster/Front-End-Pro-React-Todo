@@ -8,28 +8,25 @@ class Todo extends Component {
       this.state = {
         todos: []
       };
-      this.idCounter = 1;
+      this.idCounter = 0;
     }
   
     addTodo = (todo) => {
-      const newTodo = { ...todo, id: this.idCounter++ };
-      this.setState(prevState => ({
-        todos: [...prevState.todos, newTodo]
-      }));
+      const newTodo = { ...todo, id: ++this.idCounter };
+      this.setState({todos: [...this.state.todos, newTodo]});
     }
   
     toggleTodo = (id) => {
-      this.setState(prevState => ({
-        todos: prevState.todos.map(todo =>
+      this.setState({
+        todos: this.state.todos.map(todo =>
           todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
         )
-      }));
+      });
     }
   
     render() {
       return (
         <div>
-          <h1>Todo List</h1>
           <TodoForm addTodo={this.addTodo} />
           <TodoList todos={this.state.todos} toggleTodo={this.toggleTodo} />
         </div>
