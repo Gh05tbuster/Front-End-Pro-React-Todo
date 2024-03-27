@@ -52,11 +52,11 @@
   justify-self: start;
 }
 
-.todoList .undoneTodos {
+.todoList .undone {
   color: #900;
 }
 
-.todoList .doneTodos {
+.todoList .done {
   text-decoration: line-through;
   color: #090;
 }

@@ -5,16 +5,14 @@ function TodoList(props) {
 
     return (
     <div className='todoList'>
-        <ul className='undoneTodos'>
+        <ul>
         {undoneTodos.map(todo => (
-            <li key={todo.id} onClick={() => toggleTodo(todo.id)}>
+            <li className="undone" key={todo.id} onClick={() => toggleTodo(todo.id)}>
             {todo.text}
             </li>
         ))}
-        </ul>
-        <ul className='doneTodos'>
         {doneTodos.map(todo => (
-            <li key={todo.id} onClick={() => toggleTodo(todo.id)}>
+            <li className="done" key={todo.id} onClick={() => toggleTodo(todo.id)}>
             {todo.text}
             </li>
         ))}
