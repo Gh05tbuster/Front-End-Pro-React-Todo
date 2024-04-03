@@ -1,23 +1,34 @@
-function TodoList(props) {
-    const { todos, toggleTodo } = props;
-    const undoneTodos = todos.filter(todo => !todo.isDone);
-    const doneTodos = todos.filter(todo => todo.isDone);
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTodo } from "../../actions/actions";
 
-    return (
-    <div className='todoList'>
-        <ul>
-        {undoneTodos.map(todo => (
-            <li className="undone" key={todo.id} onClick={() => toggleTodo(todo.id)}>
+function TodoList() {
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
+  const handleToggle = (id) => {
+    dispatch(toggleTodo(id));
+  };
+
+  const unfinishedTodos = todos.filter((todo) => !todo.isDone);
+  const finishedTodos = todos.filter((todo) => todo.isDone);
+
+  return (
+    <div>
+      <ul>
+        {unfinishedTodos.map((todo) => (
+          <li key={todo.id} onClick={() => handleToggle(todo.id)}>
             {todo.text}
-            </li>
+          </li>
         ))}
-        {doneTodos.map(todo => (
-            <li className="done" key={todo.id} onClick={() => toggleTodo(todo.id)}>
-            {todo.text}
-            </li>
+        {finishedTodos.map((todo) => (
+          <li key={todo.id} onClick={() => handleToggle(todo.id)}>
+            <strike>{todo.text}</strike>
+          </li>
         ))}
-        </ul>
+      </ul>
     </div>
-    );
+  );
 }
+
 export default TodoList;

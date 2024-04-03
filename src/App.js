@@ -1,10 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import Todo from './components/Todo/Todo';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 function App() {
   return (
-    <Todo />
+    <Provider store={store}>
+      <Todo />
+    </Provider>
   );
 }
 
